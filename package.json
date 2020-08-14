@@ -1,0 +1,32 @@
+{
+  "name": "react-native-upload-third-platform",
+  "version": "1.0.2",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "upload-init": "./init.sh",
+    "upload-pgy": "./upload-pgy.sh",
+    "upload-fir": "./upload-fir.sh",
+    "upload-appstore": "./upload-appstore.sh",
+    "upload-as": "./upload-appstore.sh",
+    "upload-testflight": "./upload-testflight.sh",
+    "upload-tf": "./upload-testflight.sh",
+    "upload-build": "./build.sh"
+  },
+  "dependencies": {
+    "app-info-parser": "^0.3.10",
+    "colors": "^1.4.0",
+    "minimist": "^1.2.5",
+    "nodemailer": "^6.4.11"
+  },
+  "description": "一键上传 android/ios APP到各个测试平台和`app store`",
+  "devDependencies": {
+    "@types/colors": "^1.2.1",
+    "@types/minimist": "^1.2.0",
+    "@types/node": "^13.7.4"
+  },
+  "author": "vincent",
+  "license": "ISC"
+}
