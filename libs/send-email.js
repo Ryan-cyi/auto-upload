@@ -9,25 +9,21 @@ const args = minimist(process.argv.slice(2));
 var nodemailer = require('nodemailer');
 const file = path.resolve('upload.json');
 
+
 if (!fs.existsSync(file)) {
     console.error(colors.red('\nOops, did you forget to create config file "upload.json"\n'));
     process.exit(1);
 }
-
 const { email_config } = JSON.parse(fs.readFileSync(file));
 
-const results = args._.map(i => {
+const [email_password, ...list] = args._
+
+const results = list.map(i => {
     const result = JSON.parse(i)
     return result.data
 })
 
-const { host, port, auth_user, auth_pd, from, to, cc, copyright } = email_config
-
-if (!host || !port || !auth_user || !auth_pd || !to) {
-    console.error(colors.red('\nOops, need email config host, port, auth_user, auth_pd, to infomation "\n'));
-    process.exit(1);
-}
-
+const { host, port, auth_user, auth_pd, to, cc, copyright } = email_config
 const generateContent = () => {
     let context = ''
     results.forEach(app => {
@@ -51,13 +47,8 @@ const generateContent = () => {
     return st
 }
 
-
 let appGroupName = results[0] && results[0].buildName
-
 var mailTitle = appGroupName + ' The latest test package has been uploaded to the internal test distribution hosting platform';
-
-
-
 
 function sendSSLMail(mailContent) {
     const html = `
@@ -66,13 +57,14 @@ function sendSSLMail(mailContent) {
             ${copyright}
         </body>
     `
+
     const stransporter = nodemailer.createTransport({
         host,
         secureConnection: true, // use SSL
         port, // port
         auth: {
             user: auth_user,
-            pass: auth_pd,
+            pass: auth_pd || email_password,
         },
     });
 
@@ -96,6 +88,4 @@ function sendSSLMail(mailContent) {
         }
     });
 }
-
 sendSSLMail(generateContent())
-

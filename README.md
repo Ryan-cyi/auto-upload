@@ -46,7 +46,8 @@ npx upload-init
         "pgy_install_type": 2,
         // App安装时的访问密码，选择 "2密码安装" 时，访问密码必填
         "pgy_install_password": "123456",
-        "ios_export_plist": "./ios-export/ad-hoc.plist"
+        "ios_export_plist": "./ios-export/ad-hoc.plist",
+        "send_email": 1 // 1 上传完成蒲公英之后 发送邮件。
     },
 
 
@@ -92,6 +93,15 @@ npx upload-init
     // 默认从app_store配置中拿 user_* 或者 api_*，也可以在test_flight配置下覆盖这几个参数
     "test_flight": {
         "ios_export_plist": "./ios-export/ad-hoc.plist"
+    },
+    // 配置email邮件发送服务
+    "email_config":{
+        "host": "https:xxxxx@xx.cc", // 如果启用发送邮件 必填邮箱主机
+        "port": 464, // 如果启用发送邮件 必填端口
+        "auth_user": "xxx@xx.xx", // 如果启用发送邮件 必填用户发送账号
+        "auth_pd": "xxxxx",  // 如果启用发送邮件 邮箱密码。有两种选择获取密码的方式:1.直接填写, 2.不填 从系统要是传中读取名称为"email_password"账户为"auth_user账户"设置的密码。
+        "to": "xxx@xx.xx", // 如果启用发送邮件 必填 发送给谁 (多人用逗号隔开)
+        "cc": "xxx@xx.xx",  // 如果启用发送邮件 选填 抄送给谁 (多人用逗号隔开)
     }
 
 }

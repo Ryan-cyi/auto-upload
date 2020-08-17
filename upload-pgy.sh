@@ -19,6 +19,12 @@ send_email=$(node $libs/get-config.js pgy.send_email)
 result1={}
 result2={}
 
+if [ $send_email -eq 1 ]
+then
+  node $libs/validate-email.js
+  email_password=$(node $libs/validate-email.js)
+fi
+
 if [ $install_type -eq 2 ]
 then
   install_password=$(node $libs/get-config.js pgy.pgy_install_password)
@@ -99,25 +105,7 @@ fi
 
 if [ $send_email -eq 1 ]
 then
-  # api_group_key=$(node $libs/get-config.js pgy.pgy_group_key)
-  # pgy_group_host=https://www.pgyer.com/apiv2/appGroup/view
-  # result1={}
-  # result=$(
-  #     curl \
-  #       --form "appGroupKey=$api_group_key" \
-  #       --form "_api_key=$api_key" \
-  #       ${pgy_group_host}
-  #   )
-
-  # api_group_key=$(node $libs/get-config.js pgy.pgy_group_key)
-  # pgy_group_host=https://www.pgyer.com/apiv2/appGroup/view
-  # result=$(
-  #     curl \
-  #       --form "appKey=d68d692e726a213bffffdd8ab117752d" \
-  #       --form "_api_key=$api_key" \
-  #       ${pgy_app_detail_host}
-  #   )
-  node $libs/send-email.js "$result1" "$result2"
+  node $libs/send-email.js "$email_password" "$result1" "$result2"
 fi
 
 echo -e "\033[32m[$resultw] Done!\033[0m"

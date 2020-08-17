@@ -1,6 +1,6 @@
 {
   "name": "react-native-upload-third-platform",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -21,7 +21,7 @@
     "minimist": "^1.2.5",
     "nodemailer": "^6.4.11"
   },
-  "description": "一键上传 android/ios APP到各个测试平台和`app store`",
+  "description": "一键上传 android/ios APP到各个测试平台",
   "devDependencies": {
     "@types/colors": "^1.2.1",
     "@types/minimist": "^1.2.0",

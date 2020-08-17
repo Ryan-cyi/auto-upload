@@ -5,6 +5,9 @@
     "pgy_install_password": "123456",
     "ios_export_plist": "./ios-export/ad-hoc.plist"
   },
+  "email_config":{
+
+  },
   "fir": {
     "fir_api_token": "",
     "ios_export_plist": "./ios-export/ad-hoc.plist"
